@@ -73,6 +73,7 @@ public class InventoryCheck implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        /*
         JFrame frame2 = new JFrame("InventoryCheck");
         JFrame frame3 = new JFrame("InventoryCheck");
         JFrame frame4 = new JFrame("InventoryCheck");
@@ -88,36 +89,86 @@ public class InventoryCheck implements ActionListener {
         frame2.setVisible(true);
         frame2.setSize(600, 600);
         JPanel panel = new JPanel();
-        if(button1.isEnabled())
+        */
+        if(e.getSource() == button1)
         {
-            frame2.add(panel);
-            panel.add(label1);
+            JFrame frame1 = new JFrame("InventoryCheck");
+            JLabel label1 = new JLabel("Add Directory");
+            frame1.setVisible(true);
+            frame1.setSize(600,600);
+            JPanel panel1 = new JPanel();
+            panel1.add(label1);
+            frame1.add(panel1);
+            //panel1.add(label1);
+
+            //frame2.add(panel);
+            //panel.add(label1);
         }
-        else if(button2.isEnabled())
+        else if(e.getSource() == button2)
         {
+            JFrame frame2 = new JFrame("InventoryCheck");
+            JLabel label2 = new JLabel("Remove Directory");
+            frame2.setVisible(true);
+            frame2.setSize(600,600);
+            JPanel panel2 = new JPanel();
+            panel2.add(label2);
+            frame2.add(panel2);
+            //panel2.add(label2);
+
+
+            /*
             JPanel panel2 = new JPanel();
             frame3.add(panel2);
             panel2.add(label2);
+            */
         }
-        else if(button3.isEnabled())
+        else if(e.getSource() == button3)
         {
-            frame4.add(panel);
-            panel.add(label3);
+            JFrame frame3 = new JFrame("InventoryCheck");
+            JLabel label3 = new JLabel("Add Item");
+            frame3.setVisible(true);
+            frame3.setSize(600,600);
+            JPanel panel3 = new JPanel();
+            panel3.add(label3);
+            frame3.add(panel3);
+            //frame4.add(panel);
+            //panel.add(label3);
         }
-        else if(button4.isEnabled())
+        else if(e.getSource() == button4)
         {
-            frame5.add(panel);
-            panel.add(label4);
+            JFrame frame4 = new JFrame("InventoryCheck");
+            JLabel label4 = new JLabel("Remove Item");
+            frame4.setVisible(true);
+            frame4.setSize(600,600);
+            JPanel panel4 = new JPanel();
+            panel4.add(label4);
+            frame4.add(panel4);
+            //frame5.add(panel);
+            //panel.add(label4);
         }
-        else if(button5.isEnabled())
+        else if(e.getSource() == button5)
         {
-            frame6.add(panel);
-            panel.add(label5);
+            JFrame frame5 = new JFrame("InventoryCheck");
+            JLabel label5 = new JLabel("Order");
+            frame5.setVisible(true);
+            frame5.setSize(600,600);
+            JPanel panel5 = new JPanel();
+            panel5.add(label5);
+            frame5.add(panel5);
+            //frame6.add(panel);
+            //panel.add(label5);
         }
-        else
+        else if(e.getSource() == button6)
         {
-            frame7.add(panel);
-            panel.add(label6);
+            JFrame frame5 = new JFrame("InventoryCheck");
+            JLabel label5 = new JLabel("Search");
+            frame5.setVisible(true);
+            frame5.setSize(600,600);
+            JPanel panel5 = new JPanel();
+            panel5.add(label5);
+            frame5.add(panel5);
+            //frame7.add(panel);
+            //panel.add(label6);
         }
         
     }
