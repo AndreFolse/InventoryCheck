@@ -8,19 +8,19 @@ import java.util.ArrayList;
 public class InventoryCheck implements ActionListener {
 
     ArrayList<InventoryItem> inventory = new ArrayList();
+
     JButton button1 = new JButton("Add Directory ");
     JButton button2 = new JButton("Remove Directory ");
     JButton button3 = new JButton("Add Item");
     JButton button4 = new JButton("Remove Item");
     JButton button5 = new JButton("Order");
     JButton button6 = new JButton("Search");
-    
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
-            public void run() {
-                new InventoryCheck().createGui();
+            public void run() {new InventoryCheck().createGui();
             }
         });
 
@@ -36,77 +36,102 @@ public class InventoryCheck implements ActionListener {
         frame.getContentPane().add(panel, BorderLayout.WEST);
         GridBagConstraints c = new GridBagConstraints();
 
-        
+
         c.gridx = 0;
         c.gridy = 0;
         c.insets = new Insets(10, 10, 10, 10);
         panel.add(button1, c);
         button1.addActionListener(this);
 
-       
+
         c.gridx = 0;
         c.gridy = 1;
         panel.add(button2, c);
         button2.addActionListener(this);
 
-        
+
         c.gridx = 0;
         c.gridy = 2;
         panel.add(button3, c);
         button3.addActionListener(this);
 
-        
+
         c.gridx = 0;
         c.gridy = 3;
         panel.add(button4, c);
         button4.addActionListener(this);
-        
-        
+
+
         c.gridx = 0;
         c.gridy = 4;
         panel.add(button5, c);
         button5.addActionListener(this);
-        
-        
+
+
         c.gridx = 0;
         c.gridy = 5;
         panel.add(button6, c);
         button6.addActionListener(this);
     }
-    
+
+
+    JFrame frame1 = new JFrame("InventoryCheck");
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        /*
-        JFrame frame2 = new JFrame("InventoryCheck");
-        JFrame frame3 = new JFrame("InventoryCheck");
-        JFrame frame4 = new JFrame("InventoryCheck");
-        JFrame frame5 = new JFrame("InventoryCheck");
-        JFrame frame6 = new JFrame("InventoryCheck");
-        JFrame frame7 = new JFrame("InventoryCheck");
-        JLabel label1 = new JLabel("Add Directory");
-        JLabel label2 = new JLabel("Remove Directory");
-        JLabel label3 = new JLabel("Add Item");
-        JLabel label4 = new JLabel("Remove Item");
-        JLabel label5 = new JLabel("Order");
-        JLabel label6 = new JLabel("Search");
-        frame2.setVisible(true);
-        frame2.setSize(600, 600);
-        JPanel panel = new JPanel();
-        */
+
+        JLabel name = new JLabel("Name");
+        JLabel quantity = new JLabel("Quantity");
+        JLabel min = new JLabel("Minimum");
+        JTextField nameT = new JTextField(25);
+        JTextField quantityT = new JTextField(25);
+        JTextField minT = new JTextField(25);
+        JButton buttonAD = new JButton("Enter");
+
+
         if(e.getSource() == button1)
         {
-            JFrame frame1 = new JFrame("InventoryCheck");
+            frame1.setVisible(false);
             JLabel label1 = new JLabel("Add Directory");
             frame1.setVisible(true);
             frame1.setSize(600,600);
             JPanel panel1 = new JPanel();
             panel1.add(label1);
             frame1.add(panel1);
-            //panel1.add(label1);
+            frame1.getContentPane().add(panel1, BorderLayout.WEST);
+            GridBagConstraints c1 = new GridBagConstraints();
+            c1.gridx = 0;
+            c1.gridy = 0;
+            c1.insets = new Insets(10, 10, 10, 10);
 
-            //frame2.add(panel);
-            //panel.add(label1);
+
+            c1.gridx = 0;
+            c1.gridy = 0;
+            panel1.add(name, c1);
+            c1.gridx = 0;
+            c1.gridy = 1;
+            panel1.add(nameT, c1);
+
+            c1.gridx = 0;
+            c1.gridy = 2;
+            panel1.add(quantity, c1);
+            c1.gridx = 0;
+            c1.gridy = 3;
+            panel1.add(quantityT, c1);
+
+            c1.gridx = 0;
+            c1.gridy = 4;
+            panel1.add(min, c1);
+            c1.gridx = 0;
+            c1.gridy = 5;
+            panel1.add(minT, c1);
+
+            c1.gridx = 0;
+            c1.gridy = 6;
+            panel1.add(buttonAD, c1);
+            if()
+                buttonAD.addActionListener(this);
+
         }
         else if(e.getSource() == button2)
         {
@@ -174,6 +199,16 @@ public class InventoryCheck implements ActionListener {
             //frame7.add(panel);
             //panel.add(label6);
         }
-        
+
+        else if(e.getSource() == buttonAD)
+        {
+            String nameIn = nameT.getText();
+            int quantityIn = Integer.parseInt(quantityT.getText());
+            int minIn = Integer.parseInt(minT.getText());
+            inventory.add(new InventoryItem(nameIn, quantityIn, minIn));
+            frame1.setVisible(false);
+        }
+
+
     }
 }
