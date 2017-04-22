@@ -41,119 +41,231 @@ public class InventoryCheck implements ActionListener {
         c.gridy = 0;
         c.insets = new Insets(10, 10, 10, 10);
         panel.add(button1, c);
-        button1.addActionListener(this);
+        //Add Directory
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                JFrame frame1 = new JFrame("Add Directory");
+                frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame1.setSize(900,200);
+                JPanel panel1 = new JPanel();
+                JTextField nameT = new JTextField(20);
+                JTextField quantityT = new JTextField(10);
+                JTextField minT = new JTextField(10);
+                JButton buttonAD = new JButton("Enter");
+                //panel1.add(new JLabel("Add Directory"));
+                frame1.add(panel1);
+                panel1.add(new JLabel("Name"));
+                panel1.add(nameT);
+                panel1.add(new JLabel("Quantity"));
+                panel1.add(quantityT);
+                panel1.add(new JLabel("Minimum"));
+                panel1.add(minT);
+                panel1.add(buttonAD);
+                JButton buttonADDone = new JButton("Done");
+                panel1.add(buttonADDone);
+                frame1.setVisible(true);
+                buttonAD.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        try {
+                            String nameIn = nameT.getText();
+                            int quantityIn = Integer.parseInt(quantityT.getText());
+                            int minIn = Integer.parseInt(minT.getText());
+                            inventory.add(new InventoryItem(nameIn, quantityIn, minIn));
+                            nameT.setText("");
+                            quantityT.setText("");
+                            minT.setText("");
+                            //frame1.dispose();
+                        } catch (NumberFormatException e1) {
+                            nameT.setText("");
+                            quantityT.setText("");
+                            minT.setText("");
+                            JFrame errorFrame = new JFrame("InventoryCheck");
+                            errorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            errorFrame.setSize(450, 75);
+                            errorFrame.setVisible(true);
+                            JPanel errorPanel = new JPanel();
+                            errorFrame.add(errorPanel);
+                            JLabel errorLabel = new JLabel("You must enter integers into quantity and minimum.");
+                            errorLabel.setForeground(Color.red);
+                            errorPanel.add(errorLabel);
+                        }
+                    }
+                });
+                buttonADDone.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        frame1.dispose();
+                    }
+                });
+
+            }
+        });
 
 
         c.gridx = 0;
         c.gridy = 1;
         panel.add(button2, c);
-        button2.addActionListener(this);
+        //Remove Directory
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame2 = new JFrame("Remove Directory");
+                frame2.setSize(500,100);
+                JPanel panel2 = new JPanel();
+                frame2.add(panel2);
+                panel2.add(new JLabel("Enter Item Number"));
+                JTextField removeDT = new JTextField(10);
+                panel2.add(removeDT);
+                JButton buttonRD = new JButton("Enter");
+                panel2.add(buttonRD);
+                frame2.setVisible(true);
+                buttonRD.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        try{
+                            int i = Integer.parseInt(removeDT.getText());
+                            inventory.set(i, new InventoryItem());
+                            JFrame frameRD = new JFrame("InventoryCheck");
+                            frameRD.setSize(200, 100);
+                            frameRD.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            JPanel panelRD = new JPanel();
+                            panelRD.add(new JLabel("Item Successfully Removed"));
+                            frameRD.add(panelRD);
+                            frame2.dispose();
+                            frameRD.setVisible(true);
+                        }catch (NumberFormatException e2) {
+                            removeDT.setText("");
+                            JFrame frameRDE = new JFrame("InventoryCheck");
+                            frameRDE.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            frameRDE.setSize(250, 100);
+                            JPanel panelRDE = new JPanel();
+                            JLabel labelRDE = new JLabel("Item number must be an integer.");
+                            labelRDE.setForeground(Color.red);
+                            panelRDE.add(labelRDE);
+                            frameRDE.add(panelRDE);
+                            frameRDE.setVisible(true);
+                        }
+                    }
+                });
+
+
+
+            }
+        });
 
 
         c.gridx = 0;
         c.gridy = 2;
         panel.add(button3, c);
-        button3.addActionListener(this);
+        //Add Item
+        button3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
 
 
         c.gridx = 0;
         c.gridy = 3;
         panel.add(button4, c);
-        button4.addActionListener(this);
+        //Remove Item
+        button4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
 
 
         c.gridx = 0;
         c.gridy = 4;
         panel.add(button5, c);
-        button5.addActionListener(this);
+        //Order
+        button5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame5 = new JFrame("InventoryCheck");
+                frame5.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame5.setVisible(true);
+                frame5.setSize(600,600);
+                JPanel panel5 = new JPanel();
+                panel5.add(new JLabel("Order"));
+                frame5.add(panel5);
+                ArrayList<InventoryItem> temp = new ArrayList();
+                for(int i=0;i<inventory.size();i++)
+                {
+                    if(inventory.get(i).doesExist() && inventory.get(i).checkMin())
+                    {
+                        panel5.add(new JLabel(inventory.get(i).getName()));
+                    }
+                }
+            }
+        });
 
 
         c.gridx = 0;
         c.gridy = 5;
         panel.add(button6, c);
-        button6.addActionListener(this);
+        //Search
+        button6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame6 = new JFrame("InventoryCheck");
+                frame6.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                JTextField itemNumberT = new JTextField(10);
+                //JLabel label6 = new JLabel("Search");
+                frame6.setVisible(true);
+                frame6.setSize(500,100);
+                JPanel panel6 = new JPanel();
+                panel6.add(new JLabel("Search"));
+                frame6.add(panel6);
+                panel6.add(new JLabel("Item Number"));
+                panel6.add(itemNumberT);
+                JButton buttonS = new JButton("Search");
+                panel6.add(buttonS);
+                buttonS.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        JFrame frameS = new JFrame("InventoryCheck");
+                        frameS.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        frameS.setSize(500, 100);
+                        JPanel panelS = new JPanel();
+                        panelS.add(new JLabel("Item " + itemNumberT.getText() + ":"));
+                        panelS.add(new JLabel("Name: " + inventory.get(Integer.parseInt(itemNumberT.getText())).getName()));
+                        panelS.add(new JLabel("Quantity: " + inventory.get(Integer.parseInt(itemNumberT.getText())).getAmount()));
+                        panelS.add(new JLabel("Minimum: " + inventory.get(Integer.parseInt(itemNumberT.getText())).getMinimum()));
+                        frameS.add(panelS);
+                        JButton buttonSA = new JButton("Search Again");
+                        panelS.add(buttonSA);
+                        frameS.setVisible(true);
+                        frame6.dispose();
+                        buttonSA.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                itemNumberT.setText("");
+                                frameS.dispose();
+                                frame6.setVisible(true);
+                            }
+                        });
+
+                    }
+                });
+            }
+        });
     }
 
-
-    JFrame frame1 = new JFrame("InventoryCheck");
+    JFrame frame3 = new JFrame("InventoryCheck");
+    JFrame frame4 = new JFrame("InventoryCheck");
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        JLabel name = new JLabel("Name");
-        JLabel quantity = new JLabel("Quantity");
-        JLabel min = new JLabel("Minimum");
-        JTextField nameT = new JTextField(25);
-        JTextField quantityT = new JTextField(25);
-        JTextField minT = new JTextField(25);
-        JButton buttonAD = new JButton("Enter");
-
-
-        if(e.getSource() == button1)
+        if(e.getSource() == button3) //add item
         {
-            frame1.setVisible(false);
-            JLabel label1 = new JLabel("Add Directory");
-            frame1.setVisible(true);
-            frame1.setSize(600,600);
-            JPanel panel1 = new JPanel();
-            panel1.add(label1);
-            frame1.add(panel1);
-            frame1.getContentPane().add(panel1, BorderLayout.WEST);
-            GridBagConstraints c1 = new GridBagConstraints();
-            c1.gridx = 0;
-            c1.gridy = 0;
-            c1.insets = new Insets(10, 10, 10, 10);
-
-
-            c1.gridx = 0;
-            c1.gridy = 0;
-            panel1.add(name, c1);
-            c1.gridx = 0;
-            c1.gridy = 1;
-            panel1.add(nameT, c1);
-
-            c1.gridx = 0;
-            c1.gridy = 2;
-            panel1.add(quantity, c1);
-            c1.gridx = 0;
-            c1.gridy = 3;
-            panel1.add(quantityT, c1);
-
-            c1.gridx = 0;
-            c1.gridy = 4;
-            panel1.add(min, c1);
-            c1.gridx = 0;
-            c1.gridy = 5;
-            panel1.add(minT, c1);
-
-            c1.gridx = 0;
-            c1.gridy = 6;
-            panel1.add(buttonAD, c1);
-            if()
-                buttonAD.addActionListener(this);
-
-        }
-        else if(e.getSource() == button2)
-        {
-            JFrame frame2 = new JFrame("InventoryCheck");
-            JLabel label2 = new JLabel("Remove Directory");
-            frame2.setVisible(true);
-            frame2.setSize(600,600);
-            JPanel panel2 = new JPanel();
-            panel2.add(label2);
-            frame2.add(panel2);
-            //panel2.add(label2);
-
-
-            /*
-            JPanel panel2 = new JPanel();
-            frame3.add(panel2);
-            panel2.add(label2);
-            */
-        }
-        else if(e.getSource() == button3)
-        {
-            JFrame frame3 = new JFrame("InventoryCheck");
+            frame3.dispose();
             JLabel label3 = new JLabel("Add Item");
             frame3.setVisible(true);
             frame3.setSize(600,600);
@@ -163,9 +275,9 @@ public class InventoryCheck implements ActionListener {
             //frame4.add(panel);
             //panel.add(label3);
         }
-        else if(e.getSource() == button4)
+        else if(e.getSource() == button4) //remove item
         {
-            JFrame frame4 = new JFrame("InventoryCheck");
+            frame4.dispose();
             JLabel label4 = new JLabel("Remove Item");
             frame4.setVisible(true);
             frame4.setSize(600,600);
@@ -175,40 +287,6 @@ public class InventoryCheck implements ActionListener {
             //frame5.add(panel);
             //panel.add(label4);
         }
-        else if(e.getSource() == button5)
-        {
-            JFrame frame5 = new JFrame("InventoryCheck");
-            JLabel label5 = new JLabel("Order");
-            frame5.setVisible(true);
-            frame5.setSize(600,600);
-            JPanel panel5 = new JPanel();
-            panel5.add(label5);
-            frame5.add(panel5);
-            //frame6.add(panel);
-            //panel.add(label5);
-        }
-        else if(e.getSource() == button6)
-        {
-            JFrame frame5 = new JFrame("InventoryCheck");
-            JLabel label5 = new JLabel("Search");
-            frame5.setVisible(true);
-            frame5.setSize(600,600);
-            JPanel panel5 = new JPanel();
-            panel5.add(label5);
-            frame5.add(panel5);
-            //frame7.add(panel);
-            //panel.add(label6);
-        }
-
-        else if(e.getSource() == buttonAD)
-        {
-            String nameIn = nameT.getText();
-            int quantityIn = Integer.parseInt(quantityT.getText());
-            int minIn = Integer.parseInt(minT.getText());
-            inventory.add(new InventoryItem(nameIn, quantityIn, minIn));
-            frame1.setVisible(false);
-        }
-
 
     }
 }

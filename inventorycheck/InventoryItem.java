@@ -7,46 +7,45 @@ public class InventoryItem
     /**
      * item name
      */
-    private String name;   
+    private String name;
     /**
      * the amount of an item
      */
-    private int amount;    
+    private int amount;
     /**
      * the minimum amount of a item allowed
      */
-    private int minimum;   
+    private int minimum;
     /**
-     * the item number
+     * Whether or not an item exists
      */
-    private int itemNumber;        
+    private boolean exists;
     /**
      * creates an empty item
      */
     public InventoryItem()
     {
-        name = "";
-        amount = 0;
-        minimum = 0;
-    }    
+        exists = false;
+        name = null;
+        amount = Integer.parseInt(null);
+        minimum = Integer.parseInt(null);
+    }
     public InventoryItem(String aName, int anAmount, int aMinimum)
     {
         name = aName;
         amount = anAmount;
         minimum = aMinimum;
-    }   
+        exists = true;
+    }
     public String getName()
     {
         return name;
-    }   
+    }
     public int getAmount()
     {
         return amount;
-    }  
-    public int getNumber()
-    {
-        return itemNumber;
-    } 
+    }
+    public int getMinimum() {return minimum;}
     public void addItem(int increment)
     {
         amount += increment;
@@ -58,8 +57,11 @@ public class InventoryItem
         else
             amount -= increment;
     }
-    public boolean checkMin(int number)
+    public boolean checkMin()
     {
-        return number >= amount;
+        return minimum >= amount;
+    }
+    public boolean doesExist(){
+        return exists;
     } 
 }
