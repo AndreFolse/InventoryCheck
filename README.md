@@ -7,4 +7,4 @@ InventoryCheck's main purpose is to provide the user with an application that al
 
 
 ## Why
-The motivation behind the creation of this project is because of a class project. Also to learn and experience software development in a team based setting and to expand our understanding/knowledge of software development. 
+The motivation behind the creation of this project is because of a class project. Also, to learn and experience software development in a team based setting and to expand our understanding/knowledge of software development. 
