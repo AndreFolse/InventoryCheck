@@ -5,8 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class InventoryCheck implements ActionListener {
-
+public class InventoryCheck
+{
     ArrayList<InventoryItem> inventory = new ArrayList();
 
     JButton button1 = new JButton("Add Directory ");
@@ -15,7 +15,6 @@ public class InventoryCheck implements ActionListener {
     JButton button4 = new JButton("Remove Item");
     JButton button5 = new JButton("Order");
     JButton button6 = new JButton("Search");
-
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -126,8 +125,7 @@ public class InventoryCheck implements ActionListener {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         try{
-                            int i = Integer.parseInt(removeDT.getText());
-                            inventory.set(i, new InventoryItem());
+                            inventory.get(Integer.parseInt(removeDT.getText())).erase();
                             JFrame frameRD = new JFrame("InventoryCheck");
                             frameRD.setSize(200, 100);
                             frameRD.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -165,6 +163,66 @@ public class InventoryCheck implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                JFrame frame3 = new JFrame("Add Item");
+                JPanel panel3 = new JPanel();
+                frame3.setSize(500, 100);
+                frame3.add(panel3);
+                panel3.add(new JLabel("Item Number:"));
+                JTextField itemNumber = new JTextField(10);
+                panel3.add(itemNumber);
+                panel3.add(new JLabel("Quantity To Add"));
+                JTextField qAdd = new JTextField(10);
+                panel3.add(qAdd);
+                JButton buttonAdd = new JButton("Enter");
+                panel3.add(buttonAdd);
+                frame3.setVisible(true);
+                buttonAdd.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        JFrame addIF = new JFrame("InventoryCheck");
+                        addIF.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        addIF.setSize(500, 100);
+                        JPanel addIP = new JPanel();
+                        addIF.add(addIP);
+                        addIF.setVisible(true);
+                        JButton buttonA = new JButton();
+                        try{
+
+                            inventory.get(Integer.parseInt(itemNumber.getText())).addItem(Integer.parseInt(qAdd.getText()));
+                            addIP.add(new JLabel("Item Quantity Successfully Increased"));
+                            buttonA.setText("Add Another");
+
+                        } catch (NumberFormatException e1) {
+
+                            addIP.add(new JLabel("You can only enter integers into the boxes."));
+                            buttonA.setText("Try again");
+
+                        }
+                        addIP.add(buttonA);
+                        itemNumber.setText("");
+                        qAdd.setText("");
+                        JButton buttonADone = new JButton("Done");
+                        addIP.add(buttonADone);
+                        frame3.setVisible(false);
+                        buttonA.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                addIF.dispose();
+                                frame3.setVisible(true);
+                            }
+                        });
+                        buttonADone.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                addIF.dispose();
+                                frame3.dispose();
+                            }
+                        });
+
+                    }
+                });
+
+
             }
         });
 
@@ -176,6 +234,45 @@ public class InventoryCheck implements ActionListener {
         button4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                JFrame frame4 = new JFrame("Remove Item");
+                JPanel panel4 = new JPanel();
+                frame4.setSize(500, 100);
+                frame4.add(panel4);
+                panel4.add(new JLabel("Item Number:"));
+                JTextField itemNumberR = new JTextField(10);
+                panel4.add(itemNumberR);
+                panel4.add(new JLabel("Quantity To Remove"));
+                JTextField qRemove = new JTextField(10);
+                panel4.add(qRemove);
+                JButton buttonR = new JButton("Enter");
+                panel4.add(buttonR);
+                frame4.setVisible(true);
+                buttonR.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        JFrame removeIF = new JFrame("InventoryCheck");
+                        removeIF.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        removeIF.setSize(500, 100);
+                        JPanel removeIP = new JPanel();
+                        removeIF.add(removeIP);
+                        removeIF.setVisible(true);
+                        try{
+
+                            inventory.get(Integer.parseInt(itemNumberR.getText())).removeItem(Integer.parseInt(qRemove.getText()));
+                            removeIP.add(new JLabel("Item Quantity Successfully Decreased"));
+
+                        } catch (NumberFormatException e1) {
+
+                            removeIP.add(new JLabel("You can only enter integers into the boxes."));
+
+                        } catch (ItemException e1) {
+                            removeIP.add(new JLabel("You cannot remove more items than you have."));
+                        }
+                        itemNumberR.setText("");
+                        qRemove.setText("");
+                    }
+                });
 
             }
         });
@@ -190,11 +287,13 @@ public class InventoryCheck implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 JFrame frame5 = new JFrame("InventoryCheck");
                 frame5.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                frame5.setVisible(true);
                 frame5.setSize(600,600);
                 JPanel panel5 = new JPanel();
                 panel5.add(new JLabel("Order"));
                 frame5.add(panel5);
+                //JScrollPane pane = new JScrollPane();
+                //pane.add(panel5);
+                //frame5.add(pane);
                 ArrayList<InventoryItem> temp = new ArrayList();
                 for(int i=0;i<inventory.size();i++)
                 {
@@ -203,6 +302,7 @@ public class InventoryCheck implements ActionListener {
                         panel5.add(new JLabel(inventory.get(i).getName()));
                     }
                 }
+                frame5.setVisible(true);
             }
         });
 
@@ -256,37 +356,5 @@ public class InventoryCheck implements ActionListener {
                 });
             }
         });
-    }
-
-    JFrame frame3 = new JFrame("InventoryCheck");
-    JFrame frame4 = new JFrame("InventoryCheck");
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == button3) //add item
-        {
-            frame3.dispose();
-            JLabel label3 = new JLabel("Add Item");
-            frame3.setVisible(true);
-            frame3.setSize(600,600);
-            JPanel panel3 = new JPanel();
-            panel3.add(label3);
-            frame3.add(panel3);
-            //frame4.add(panel);
-            //panel.add(label3);
-        }
-        else if(e.getSource() == button4) //remove item
-        {
-            frame4.dispose();
-            JLabel label4 = new JLabel("Remove Item");
-            frame4.setVisible(true);
-            frame4.setSize(600,600);
-            JPanel panel4 = new JPanel();
-            panel4.add(label4);
-            frame4.add(panel4);
-            //frame5.add(panel);
-            //panel.add(label4);
-        }
-
     }
 }

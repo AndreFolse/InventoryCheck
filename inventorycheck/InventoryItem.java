@@ -23,13 +23,6 @@ public class InventoryItem
     /**
      * creates an empty item
      */
-    public InventoryItem()
-    {
-        exists = false;
-        name = null;
-        amount = Integer.parseInt(null);
-        minimum = Integer.parseInt(null);
-    }
     public InventoryItem(String aName, int anAmount, int aMinimum)
     {
         name = aName;
@@ -56,6 +49,9 @@ public class InventoryItem
             throw new ItemException("You've tried to remove more items than are listed!");
         else
             amount -= increment;
+    }
+    public void erase(){
+        exists = false;
     }
     public boolean checkMin()
     {
