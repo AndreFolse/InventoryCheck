@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class InventoryCheck
 {
     ArrayList<InventoryItem> inventory = new ArrayList();
-
     JButton button1 = new JButton("Add Directory ");
     JButton button2 = new JButton("Remove Directory ");
     JButton button3 = new JButton("Add Item");
