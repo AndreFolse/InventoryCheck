@@ -9,8 +9,8 @@ public class InventoryCheck
     ArrayList<InventoryItem> inventory = new ArrayList();
     JButton button1 = new JButton("Add Directory ");
     JButton button2 = new JButton("Remove Directory ");
-    JButton button3 = new JButton("Add Item");
-    JButton button4 = new JButton("Remove Item");
+    JButton button3 = new JButton("Increase Quantity");
+    JButton button4 = new JButton("Decrease Quantity");
     JButton button5 = new JButton("Order");
     JButton button6 = new JButton("Search");
 
@@ -30,7 +30,7 @@ public class InventoryCheck
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel panel = new JPanel(new GridBagLayout());
         frame.add(panel);
-        frame.getContentPane().add(panel, BorderLayout.WEST);
+        frame.getContentPane().add(panel, BorderLayout.NORTH);
         GridBagConstraints c = new GridBagConstraints();
 
 
@@ -156,12 +156,12 @@ public class InventoryCheck
         c.gridx = 0;
         c.gridy = 2;
         panel.add(button3, c);
-        //Add Item
+        //Increase Quantity
         button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                JFrame frame3 = new JFrame("Add Item");
+                JFrame frame3 = new JFrame("Increase Quantity");
                 JPanel panel3 = new JPanel();
                 frame3.setSize(500, 100);
                 frame3.add(panel3);
@@ -228,12 +228,12 @@ public class InventoryCheck
         c.gridx = 0;
         c.gridy = 3;
         panel.add(button4, c);
-        //Remove Item
+        //Decrease Quantity
         button4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                JFrame frame4 = new JFrame("Remove Item");
+                JFrame frame4 = new JFrame("Decrease Quantity");
                 JPanel panel4 = new JPanel();
                 frame4.setSize(500, 100);
                 frame4.add(panel4);
