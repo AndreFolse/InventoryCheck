@@ -385,6 +385,7 @@ public class InventoryCheck
                             buttonRD.setText("Try again");
                         } catch (ItemException e1) {
                             removeIP.add(new JLabel("You cannot remove more items than you have."));
+                            buttonRD.setText("Try again");
                         }
                         removeIP.add(buttonRD);
                         itemNumberR.setText("");
