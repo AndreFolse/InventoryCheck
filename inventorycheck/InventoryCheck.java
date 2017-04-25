@@ -301,26 +301,48 @@ public class InventoryCheck
         c.gridy = 4;
         panel.add(button5, c);
         //Order
-        button5.addActionListener(new ActionListener() {
+       button5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame5 = new JFrame("InventoryCheck");
+                JFrame frame5 = new JFrame("Order");
                 frame5.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame5.setSize(600,600);
-                JPanel panel5 = new JPanel();
-                panel5.add(new JLabel("Order"));
+                JPanel panel5 = new JPanel(new GridLayout(5,5,10,10));
+                //JLabel order = new JLabel("Order");
+                //order.setHorizontalAlignment(JLabel.CENTER);
+                //order.setVerticalAlignment(JLabel.TOP);
+                EmptyBorder Panelborder = new EmptyBorder(5,5,5,5);
+                panel5.setBorder(Panelborder);
+                EmptyBorder border = new EmptyBorder(1,3,1,2);
+                LineBorder line = new LineBorder(Color.BLUE,2,true);
+                CompoundBorder compound = new CompoundBorder(line, border);
+                //JLabel order = new JLabel("Order");
+                //order.setHorizontalAlignment(JLabel.CENTER);
+                //order.setVerticalAlignment(JLabel.TOP);
+                //panel5.add(order);
                 frame5.add(panel5);
+                //JScrollPane pane = new JScrollPane();
+                //pane.add(panel5);
+                //frame5.add(pane);
                 ArrayList<InventoryItem> temp = new ArrayList();
+                int x = 1;
                 for(int i=0;i<inventory.size();i++)
                 {
                     if(inventory.get(i).doesExist() && inventory.get(i).checkMin())
                     {
-                        //panel5.add(new JLabel(inventory.get(i).getName()));
+                        JLabel item = new JLabel(x + ") " + inventory.get(i).getName());
+                        item.setBorder(compound);
+                        panel5.add(item);
+                        item.setHorizontalAlignment(JLabel.CENTER);
+                        item.setVerticalAlignment(JLabel.CENTER);
+                        //label.setFont(new Font("Serif",Font.LAYOUT_LEFT_TO_RIGHT,12));
+                        x++;
                     }
                 }
                 frame5.setVisible(true);
             }
         });
+
 
 
         c.gridx = 0;
