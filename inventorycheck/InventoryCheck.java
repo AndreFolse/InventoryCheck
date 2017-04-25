@@ -60,21 +60,24 @@ public class InventoryCheck
                 panel1.add(new JLabel("Minimum"));
                 panel1.add(minT);
                 panel1.add(buttonAD);
-                JButton buttonADDone = new JButton("Done");
-                panel1.add(buttonADDone);
+                JButton buttonDone = new JButton("Done");
+                panel1.add(buttonDone);
                 frame1.setVisible(true);
                 buttonAD.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         try {
+                            if(Integer.parseInt(quantityT.getText()) < 0 || Integer.parseInt(minT.getText()) < 0)
+                                throw new ArithmeticException();
                             String nameIn = nameT.getText();
+                            if(nameIn.length()==0)
+                                throw new ArithmeticException("a");
                             int quantityIn = Integer.parseInt(quantityT.getText());
                             int minIn = Integer.parseInt(minT.getText());
                             inventory.add(new InventoryItem(nameIn, quantityIn, minIn));
                             nameT.setText("");
                             quantityT.setText("");
                             minT.setText("");
-                            //frame1.dispose();
                         } catch (NumberFormatException e1) {
                             nameT.setText("");
                             quantityT.setText("");
@@ -85,13 +88,31 @@ public class InventoryCheck
                             errorFrame.setVisible(true);
                             JPanel errorPanel = new JPanel();
                             errorFrame.add(errorPanel);
-                            JLabel errorLabel = new JLabel("You must enter integers into quantity and minimum.");
+                            JLabel errorLabel = new JLabel("You must enter a number into quantity and minimum.");
                             errorLabel.setForeground(Color.red);
+                            errorPanel.add(errorLabel);
+                        } catch (ArithmeticException e1) {
+                            nameT.setText("");
+                            quantityT.setText("");
+                            minT.setText("");
+                            JFrame errorFrame = new JFrame("InventoryCheck");
+                            errorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            errorFrame.setSize(450, 75);
+                            errorFrame.setVisible(true);
+                            JPanel errorPanel = new JPanel();
+                            errorFrame.add(errorPanel);
+                            JLabel errorLabel;
+                            if(e1.getMessage().compareTo("a")==0)
+                                errorLabel = new JLabel("You must enter a name for the item");
+                            else
+                                errorLabel = new JLabel("You must enter number that are greater than or equal to 0.");
+                            errorLabel.setForeground(Color.red);
+                            errorLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
                             errorPanel.add(errorLabel);
                         }
                     }
                 });
-                buttonADDone.addActionListener(new ActionListener() {
+                buttonDone.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         frame1.dispose();
@@ -289,15 +310,12 @@ public class InventoryCheck
                 JPanel panel5 = new JPanel();
                 panel5.add(new JLabel("Order"));
                 frame5.add(panel5);
-                //JScrollPane pane = new JScrollPane();
-                //pane.add(panel5);
-                //frame5.add(pane);
                 ArrayList<InventoryItem> temp = new ArrayList();
                 for(int i=0;i<inventory.size();i++)
                 {
                     if(inventory.get(i).doesExist() && inventory.get(i).checkMin())
                     {
-                        panel5.add(new JLabel(inventory.get(i).getName()));
+                        //panel5.add(new JLabel(inventory.get(i).getName()));
                     }
                 }
                 frame5.setVisible(true);
@@ -332,24 +350,34 @@ public class InventoryCheck
                         frameS.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         frameS.setSize(500, 100);
                         JPanel panelS = new JPanel();
-                        panelS.add(new JLabel("Item " + itemNumberT.getText() + ":"));
-                        panelS.add(new JLabel("Name: " + inventory.get(Integer.parseInt(itemNumberT.getText())).getName()));
-                        panelS.add(new JLabel("Quantity: " + inventory.get(Integer.parseInt(itemNumberT.getText())).getAmount()));
-                        panelS.add(new JLabel("Minimum: " + inventory.get(Integer.parseInt(itemNumberT.getText())).getMinimum()));
                         frameS.add(panelS);
-                        JButton buttonSA = new JButton("Search Again");
-                        panelS.add(buttonSA);
-                        frameS.setVisible(true);
-                        frame6.dispose();
-                        buttonSA.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                itemNumberT.setText("");
-                                frameS.dispose();
-                                frame6.setVisible(true);
-                            }
-                        });
-
+                        try {
+                            if (!inventory.get(Integer.parseInt(itemNumberT.getText())).doesExist())
+                                throw new IndexOutOfBoundsException();
+                            panelS.add(new JLabel("Item " + itemNumberT.getText() + ":"));
+                            panelS.add(new JLabel("Name: " + inventory.get(Integer.parseInt(itemNumberT.getText())).getName()));
+                            panelS.add(new JLabel("Quantity: " + inventory.get(Integer.parseInt(itemNumberT.getText())).getAmount()));
+                            panelS.add(new JLabel("Minimum: " + inventory.get(Integer.parseInt(itemNumberT.getText())).getMinimum()));
+                            frameS.add(panelS);
+                            JButton buttonSA = new JButton("Search Again");
+                            panelS.add(buttonSA);
+                            frameS.setVisible(true);
+                            frame6.dispose();
+                            buttonSA.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    itemNumberT.setText("");
+                                    frameS.dispose();
+                                    frame6.setVisible(true);
+                                }
+                            });
+                        } catch (IndexOutOfBoundsException e1) {
+                            panelS.add(new JLabel("There is no item number " + itemNumberT.getText()));
+                            frameS.setVisible(true);
+                        } catch (ArithmeticException e2) {
+                            panelS.add(new JLabel("There is no item number " + itemNumberT.getText()));
+                            frameS.setVisible(true);
+                        }
                     }
                 });
             }
