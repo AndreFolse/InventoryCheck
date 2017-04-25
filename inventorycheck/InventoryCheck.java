@@ -45,7 +45,10 @@ public class InventoryCheck
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                if(inventory.isEmpty()){
+                    inventory.add(new InventoryItem("", 0, 0));
+                    inventory.get(0).erase();
+                }
                 JFrame frame1 = new JFrame("Add Directory");
                 frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame1.setSize(900,200);
