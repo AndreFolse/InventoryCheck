@@ -462,12 +462,15 @@ public class InventoryCheck
                                 }
                             });
                         } catch (IndexOutOfBoundsException e1) {
+                            itemNumberT.setText("");
                             panelS.add(new JLabel("There is no item number " + itemNumberT.getText()));
                             frameS.setVisible(true);
                         } catch (ArithmeticException e2) {
+                            itemNumberT.setText("");
                             panelS.add(new JLabel("There is no item number " + itemNumberT.getText()));
                             frameS.setVisible(true);
                         } catch (NumberFormatException e3) {
+                            itemNumberT.setText("");
                             panelS.add(new JLabel("You must enter a number."));
                             frameS.setVisible(true);
                         }
