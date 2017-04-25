@@ -247,6 +247,7 @@ public class InventoryCheck
 
                         } catch (NullPointerException e1){
                             addIP.add(new JLabel("There is no item number " + itemNumber.getText()));
+                            buttonA.setText("Try again");
                         } catch (ArithmeticException e1 ){
                             addIP.add(new JLabel("You must enter a number in the boxes."));
                             buttonA.setText("Try again");
@@ -310,20 +311,50 @@ public class InventoryCheck
                         JPanel removeIP = new JPanel();
                         removeIF.add(removeIP);
                         removeIF.setVisible(true);
+                        JButton buttonRD = new JButton();
                         try{
-
+                            if(itemNumberR.getText().length() == 0 || qRemove.getText().length() == 0)
+                                throw new ArithmeticException();
+                            if(!inventory.get(Integer.parseInt(itemNumberR.getText())).doesExist())
+                                throw new NullPointerException();
                             inventory.get(Integer.parseInt(itemNumberR.getText())).removeItem(Integer.parseInt(qRemove.getText()));
                             removeIP.add(new JLabel("Item Quantity Successfully Decreased"));
+                            buttonRD.setText("Remove Another");
 
                         } catch (NumberFormatException e1) {
 
                             removeIP.add(new JLabel("You can only enter integers into the boxes."));
+                            buttonRD.setText("Try again");
 
+                        } catch (NullPointerException e1){
+                            removeIP.add(new JLabel("There is no item number " + itemNumberR.getText()));
+                            buttonRD.setText("Try again");
+                        } catch (ArithmeticException e1 ){
+                            removeIP.add(new JLabel("You must enter a number in the boxes."));
+                            buttonRD.setText("Try again");
                         } catch (ItemException e1) {
                             removeIP.add(new JLabel("You cannot remove more items than you have."));
                         }
+                        removeIP.add(buttonRD);
                         itemNumberR.setText("");
                         qRemove.setText("");
+                        JButton buttonRDone = new JButton("Done");
+                        removeIP.add(buttonRDone);
+                        frame4.setVisible(false);
+                        buttonRD.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                removeIF.dispose();
+                                frame4.setVisible(true);
+                            }
+                        });
+                        buttonRDone.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                removeIF.dispose();
+                                frame4.dispose();
+                            }
+                        });
                     }
                 });
 
