@@ -49,24 +49,46 @@ public class InventoryCheck
                     inventory.add(new InventoryItem("", 0, 0));
                     inventory.get(0).erase();
                 }
+               
                 JFrame frame1 = new JFrame("Add Directory");
                 frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame1.setSize(900,200);
                 JPanel panel1 = new JPanel();
+                panel1.setLayout(new GridBagLayout());
+                GridBagConstraints a = new GridBagConstraints();
+                a.gridx = 0;
+                a.gridy = 0;
                 JTextField nameT = new JTextField(20);
-                JTextField quantityT = new JTextField(10);
-                JTextField minT = new JTextField(10);
-                JButton buttonAD = new JButton("Enter");
+                JTextField quantityT = new JTextField(20);
+                JTextField minT = new JTextField(20);
+                //JButton buttonAD = new JButton("Enter");
+                //a.gridx = 4;
+                //a.gridy = 4;
                 frame1.add(panel1);
-                panel1.add(new JLabel("Name"));
-                panel1.add(nameT);
-                panel1.add(new JLabel("Quantity"));
-                panel1.add(quantityT);
-                panel1.add(new JLabel("Minimum"));
-                panel1.add(minT);
-                panel1.add(buttonAD);
+                panel1.add(new JLabel("Name"),a);
+                a.gridx = 1;
+                a.gridy = 0;
+                panel1.add(nameT,a);
+                a.gridx = 0;
+                a.gridy = 1;
+                panel1.add(new JLabel("Quantity"),a);
+                a.gridx = 1;
+                a.gridy = 1;
+                panel1.add(quantityT,a);
+                a.gridx = 0;
+                a.gridy = 2;
+                panel1.add(new JLabel("Minimum"),a);
+                a.gridx = 1;
+                a.gridy = 2;
+                panel1.add(minT,a);
+                a.gridx = 1;
+                a.gridy = 3;
+                JButton buttonAD = new JButton("Enter");
+                panel1.add(buttonAD,a);
+                a.gridx = 1;
+                a.gridy = 4;
                 JButton buttonDone = new JButton("Done");
-                panel1.add(buttonDone);
+                panel1.add(buttonDone,a);
                 frame1.setVisible(true);
                 buttonAD.addActionListener(new ActionListener() {
                     @Override
@@ -213,16 +235,29 @@ public class InventoryCheck
 
                 JFrame frame3 = new JFrame("Increase Quantity");
                 JPanel panel3 = new JPanel();
-                frame3.setSize(500, 100);
+                panel3.setLayout(new GridBagLayout());
+                GridBagConstraints b = new GridBagConstraints();
+                frame3.setSize(500, 250);
                 frame3.add(panel3);
-                panel3.add(new JLabel("Item Number:"));
+                frame3.getContentPane().add(panel3,BorderLayout.NORTH);
+                b.gridx = 0;
+                b.gridy = 0;
+                panel3.add(new JLabel("Item Number:"),b);
                 JTextField itemNumber = new JTextField(10);
-                panel3.add(itemNumber);
-                panel3.add(new JLabel("Quantity To Add"));
+                b.gridx = 1;
+                b.gridy = 0;
+                panel3.add(itemNumber,b);
+                b.gridx = 0;
+                b.gridy = 1;
+                panel3.add(new JLabel("Quantity To Add"),b);
                 JTextField qAdd = new JTextField(10);
-                panel3.add(qAdd);
+                b.gridx = 1;
+                b.gridy = 1;
+                panel3.add(qAdd,b);
                 JButton buttonAdd = new JButton("Enter");
-                panel3.add(buttonAdd);
+                b.gridx = 1;
+                b.gridy = 2;
+                panel3.add(buttonAdd,b);
                 frame3.setVisible(true);
                 buttonAdd.addActionListener(new ActionListener() {
                     @Override
@@ -294,16 +329,29 @@ public class InventoryCheck
 
                 JFrame frame4 = new JFrame("Decrease Quantity");
                 JPanel panel4 = new JPanel();
-                frame4.setSize(500, 100);
+                panel4.setLayout(new GridBagLayout());
+                GridBagConstraints d = new GridBagConstraints();
+                frame4.setSize(500, 250);
                 frame4.add(panel4);
-                panel4.add(new JLabel("Item Number:"));
+                frame4.getContentPane().add(panel4, BorderLayout.NORTH);
+                d.gridx = 0;
+                d.gridy = 0;
+                panel4.add(new JLabel("Item Number:"),d);
+                d.gridx = 1;
+                d.gridy = 0;
                 JTextField itemNumberR = new JTextField(10);
-                panel4.add(itemNumberR);
-                panel4.add(new JLabel("Quantity To Remove"));
+                panel4.add(itemNumberR,d);
+                d.gridx = 0;
+                d.gridy = 1;
+                panel4.add(new JLabel("Quantity To Remove"),d);
+                d.gridx = 1;
+                d.gridy = 1;
                 JTextField qRemove = new JTextField(10);
-                panel4.add(qRemove);
+                panel4.add(qRemove,d);
+                d.gridx = 1;
+                d.gridy = 2;
                 JButton buttonR = new JButton("Enter");
-                panel4.add(buttonR);
+                panel4.add(buttonR,d);
                 frame4.setVisible(true);
                 buttonR.addActionListener(new ActionListener() {
                     @Override
