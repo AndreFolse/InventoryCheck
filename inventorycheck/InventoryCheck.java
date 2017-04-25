@@ -420,10 +420,9 @@ public class InventoryCheck
         button6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame6 = new JFrame("InventoryCheck");
+                JFrame frame6 = new JFrame("Search");
                 frame6.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 JTextField itemNumberT = new JTextField(10);
-                //JLabel label6 = new JLabel("Search");
                 frame6.setVisible(true);
                 frame6.setSize(500,100);
                 JPanel panel6 = new JPanel();
