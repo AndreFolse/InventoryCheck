@@ -54,7 +54,6 @@ public class InventoryCheck
                 JTextField quantityT = new JTextField(10);
                 JTextField minT = new JTextField(10);
                 JButton buttonAD = new JButton("Enter");
-                //panel1.add(new JLabel("Add Directory"));
                 frame1.add(panel1);
                 panel1.add(new JLabel("Name"));
                 panel1.add(nameT);
@@ -71,7 +70,7 @@ public class InventoryCheck
                     public void actionPerformed(ActionEvent e) {
                         try {
                             if(Integer.parseInt(quantityT.getText()) < 0 || Integer.parseInt(minT.getText()) < 0)
-                                throw new ArithmeticException();
+                                throw new NullPointerException();
                             String nameIn = nameT.getText();
                             if(nameIn.length()==0)
                                 throw new ArithmeticException("a");
@@ -104,11 +103,21 @@ public class InventoryCheck
                             errorFrame.setVisible(true);
                             JPanel errorPanel = new JPanel();
                             errorFrame.add(errorPanel);
-                            JLabel errorLabel;
-                            if(e1.getMessage().compareTo("a")==0)
-                                errorLabel = new JLabel("You must enter a name for the item");
-                            else
-                                errorLabel = new JLabel("You must enter number that are greater than or equal to 0.");
+                            JLabel errorLabel = new JLabel("You must enter a name for the item");
+                            errorLabel.setForeground(Color.red);
+                            errorLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+                            errorPanel.add(errorLabel);
+                        } catch (NullPointerException e1) {
+                            nameT.setText("");
+                            quantityT.setText("");
+                            minT.setText("");
+                            JFrame errorFrame = new JFrame("InventoryCheck");
+                            errorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            errorFrame.setSize(450, 75);
+                            errorFrame.setVisible(true);
+                            JPanel errorPanel = new JPanel();
+                            errorFrame.add(errorPanel);
+                            JLabel errorLabel = new JLabel("You must enter number that are greater than or equal to 0.");
                             errorLabel.setForeground(Color.red);
                             errorLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
                             errorPanel.add(errorLabel);
@@ -146,8 +155,11 @@ public class InventoryCheck
                 buttonRD.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        String text = removeDT.getText();
                         try{
-                            inventory.get(Integer.parseInt(removeDT.getText())).erase();
+                            if(!inventory.get(Integer.parseInt(text)).doesExist())
+                                throw new IndexOutOfBoundsException();
+                            inventory.get(Integer.parseInt(text)).erase();
                             JFrame frameRD = new JFrame("InventoryCheck");
                             frameRD.setSize(200, 100);
                             frameRD.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -156,13 +168,24 @@ public class InventoryCheck
                             frameRD.add(panelRD);
                             frame2.dispose();
                             frameRD.setVisible(true);
-                        }catch (NumberFormatException e2) {
+                        } catch (NumberFormatException e2) {
                             removeDT.setText("");
                             JFrame frameRDE = new JFrame("InventoryCheck");
                             frameRDE.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                             frameRDE.setSize(250, 100);
                             JPanel panelRDE = new JPanel();
                             JLabel labelRDE = new JLabel("Item number must be an integer.");
+                            labelRDE.setForeground(Color.red);
+                            panelRDE.add(labelRDE);
+                            frameRDE.add(panelRDE);
+                            frameRDE.setVisible(true);
+                        } catch (IndexOutOfBoundsException e1) {
+                            removeDT.setText("");
+                            JFrame frameRDE = new JFrame("InventoryCheck");
+                            frameRDE.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            frameRDE.setSize(250, 100);
+                            JPanel panelRDE = new JPanel();
+                            JLabel labelRDE = new JLabel("There is no item number " + text);
                             labelRDE.setForeground(Color.red);
                             panelRDE.add(labelRDE);
                             frameRDE.add(panelRDE);
