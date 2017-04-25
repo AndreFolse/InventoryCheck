@@ -242,7 +242,7 @@ public class InventoryCheck
                 frame3.getContentPane().add(panel3,BorderLayout.NORTH);
                 b.gridx = 0;
                 b.gridy = 0;
-                panel3.add(new JLabel("Item Number:"),b);
+                panel3.add(new JLabel("Item Number"),b);
                 JTextField itemNumber = new JTextField(10);
                 b.gridx = 1;
                 b.gridy = 0;
@@ -336,7 +336,7 @@ public class InventoryCheck
                 frame4.getContentPane().add(panel4, BorderLayout.NORTH);
                 d.gridx = 0;
                 d.gridy = 0;
-                panel4.add(new JLabel("Item Number:"),d);
+                panel4.add(new JLabel("Item Number"),d);
                 d.gridx = 1;
                 d.gridy = 0;
                 JTextField itemNumberR = new JTextField(10);
