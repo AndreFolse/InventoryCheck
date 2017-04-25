@@ -232,7 +232,10 @@ public class InventoryCheck
                         addIF.setVisible(true);
                         JButton buttonA = new JButton();
                         try{
-
+                            if(itemNumber.getText().length() == 0 || qAdd.getText().length() == 0)
+                                throw new ArithmeticException();
+                            if(!inventory.get(Integer.parseInt(itemNumber.getText())).doesExist())
+                                throw new NullPointerException();
                             inventory.get(Integer.parseInt(itemNumber.getText())).addItem(Integer.parseInt(qAdd.getText()));
                             addIP.add(new JLabel("Item Quantity Successfully Increased"));
                             buttonA.setText("Add Another");
@@ -242,6 +245,11 @@ public class InventoryCheck
                             addIP.add(new JLabel("You can only enter integers into the boxes."));
                             buttonA.setText("Try again");
 
+                        } catch (NullPointerException e1){
+                            addIP.add(new JLabel("There is no item number " + itemNumber.getText()));
+                        } catch (ArithmeticException e1 ){
+                            addIP.add(new JLabel("You must enter a number in the boxes."));
+                            buttonA.setText("Try again");
                         }
                         addIP.add(buttonA);
                         itemNumber.setText("");
