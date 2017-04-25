@@ -425,6 +425,9 @@ public class InventoryCheck
                         } catch (ArithmeticException e2) {
                             panelS.add(new JLabel("There is no item number " + itemNumberT.getText()));
                             frameS.setVisible(true);
+                        } catch (NumberFormatException e3) {
+                            panelS.add(new JLabel("You must enter a number."));
+                            frameS.setVisible(true);
                         }
                     }
                 });
