@@ -76,7 +76,7 @@ public class InventoryCheck
 
         JPanel panel = new JPanel(new GridBagLayout());
         frame.add(panel);
-        frame.getContentPane().add(panel, BorderLayout.NORTH);
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
         GridBagConstraints c = new GridBagConstraints();
 
 
@@ -525,10 +525,17 @@ public class InventoryCheck
                 frame6.setVisible(true);
                 frame6.setSize(500,100);
                 JPanel panel6 = new JPanel();
-                panel6.add(new JLabel("Search"));
+                panel6.setLayout(new GridBagLayout());
+                GridBagConstraints n = new GridBagConstaints();
                 frame6.add(panel6);
-                panel6.add(new JLabel("Item Number"));
-                panel6.add(itemNumberT);
+                n.gridx = 0;
+                n.gridy = 0;
+                panel6.add(new JLabel("Search Item Number"),n);
+                n.gridx = 1;
+                n.gridy = 0;
+                panel6.add(itemNumberT,n);
+                n.gridx = 1;
+                n.gridy = 1;
                 JButton buttonS = new JButton("Search");
                 panel6.add(buttonS);
                 buttonS.addActionListener(new ActionListener() {
