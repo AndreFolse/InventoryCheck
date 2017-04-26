@@ -484,7 +484,7 @@ public class InventoryCheck
                 buttonS.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        JFrame frameS = new JFrame("InventoryCheck");
+                        JFrame frameS = new JFrame("Search");
                         frameS.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         frameS.setSize(500, 100);
                         JPanel panelS = new JPanel();
