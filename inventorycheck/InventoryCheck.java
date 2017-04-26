@@ -526,7 +526,7 @@ public class InventoryCheck
                 frame6.setSize(500,100);
                 JPanel panel6 = new JPanel();
                 panel6.setLayout(new GridBagLayout());
-                GridBagConstraints n = new GridBagConstaints();
+                GridBagConstraints n = new GridBagConstraints();
                 frame6.add(panel6);
                 n.gridx = 0;
                 n.gridy = 0;
