@@ -10,8 +10,8 @@ import javax.swing.border.LineBorder;
 public class InventoryCheck
 {
     ArrayList<InventoryItem> inventory = new ArrayList();
-    JButton button1 = new JButton("Add Directory ");
-    JButton button2 = new JButton("Remove Directory ");
+    JButton button1 = new JButton("Add Directory");
+    JButton button2 = new JButton("Remove Directory");
     JButton button3 = new JButton("Increase Quantity");
     JButton button4 = new JButton("Decrease Quantity");
     JButton button5 = new JButton("Order");
@@ -336,14 +336,14 @@ public class InventoryCheck
                 frame4.getContentPane().add(panel4, BorderLayout.NORTH);
                 d.gridx = 0;
                 d.gridy = 0;
-                panel4.add(new JLabel("Item Number:"),d);
+                panel4.add(new JLabel("Item Number"),d);
                 d.gridx = 1;
                 d.gridy = 0;
                 JTextField itemNumberR = new JTextField(10);
                 panel4.add(itemNumberR,d);
                 d.gridx = 0;
                 d.gridy = 1;
-                panel4.add(new JLabel("Quantity To Remove:"),d);
+                panel4.add(new JLabel("Quantity To Remove"),d);
                 d.gridx = 1;
                 d.gridy = 1;
                 JTextField qRemove = new JTextField(10);
@@ -492,7 +492,7 @@ public class InventoryCheck
                         try {
                             if (!inventory.get(Integer.parseInt(itemNumberT.getText())).doesExist())
                                 throw new IndexOutOfBoundsException();
-                            panelS.add(new JLabel("Item " + itemNumberT.getText() + ":"));
+                            panelS.add(new JLabel("Item: " + itemNumberT.getText() + ":"));
                             panelS.add(new JLabel("Name: " + inventory.get(Integer.parseInt(itemNumberT.getText())).getName()));
                             panelS.add(new JLabel("Quantity: " + inventory.get(Integer.parseInt(itemNumberT.getText())).getAmount()));
                             panelS.add(new JLabel("Minimum: " + inventory.get(Integer.parseInt(itemNumberT.getText())).getMinimum()));
