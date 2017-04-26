@@ -213,12 +213,20 @@ public class InventoryCheck
                 JFrame frame2 = new JFrame("Remove Directory");
                 frame2.setSize(500,100);
                 JPanel panel2 = new JPanel();
+                panel2.setLayout(new GridBagLayout());
+                GridBagConstraints m = new GridBagConstraints();
+                m.gridx = 0;
+                m.gridy = 0;
                 frame2.add(panel2);
-                panel2.add(new JLabel("Enter Item Number"));
+                panel2.add(new JLabel("Enter Item Number"),m);
+                m.gridx = 1;
+                m.gridy = 0;
                 JTextField removeDT = new JTextField(10);
-                panel2.add(removeDT);
+                panel2.add(removeDT,m);
+                m.gridx = 1;
+                m.gridy = 1;
                 JButton buttonRD = new JButton("Enter");
-                panel2.add(buttonRD);
+                panel2.add(buttonRD,m);
                 frame2.setVisible(true);
                 buttonRD.addActionListener(new ActionListener() {
                     @Override
