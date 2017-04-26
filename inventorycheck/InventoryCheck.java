@@ -3,6 +3,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.*;
 import java.util.ArrayList;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -30,7 +33,47 @@ public class InventoryCheck
         JFrame frame = new JFrame("InventoryCheck");
         frame.setSize(300, 350);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+                try {
+                    FileInputStream fis = new FileInputStream("t.txt");
+                    ObjectInputStream ois = new ObjectInputStream(fis);
+                    inventory = (ArrayList<InventoryItem>) ois.readObject();
+                    ois.close();
+                } catch (FileNotFoundException a) {
+
+                } catch (IOException a) {
+
+                } catch (ClassNotFoundException a) {
+
+                }
+            }
+        });
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                //save program
+                FileOutputStream fos = null;
+                ObjectOutputStream oos = null;
+                try {
+                    fos = new FileOutputStream("t.txt");
+                    oos = new ObjectOutputStream(fos);
+                    oos.writeObject(inventory);
+                    oos.close();
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+                //close program
+                System.exit(0);
+            }
+        });
+
         JPanel panel = new JPanel(new GridBagLayout());
         frame.add(panel);
         frame.getContentPane().add(panel, BorderLayout.NORTH);

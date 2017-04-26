@@ -1,8 +1,11 @@
 package inventorycheck;
- /**
+
+import java.io.Serializable;
+
+/**
  * creates and updates items in inventory
  */
-public class InventoryItem 
+public class InventoryItem implements Serializable
 {
     /**
      * item name
