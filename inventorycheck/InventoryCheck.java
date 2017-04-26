@@ -336,14 +336,14 @@ public class InventoryCheck
                 frame4.getContentPane().add(panel4, BorderLayout.NORTH);
                 d.gridx = 0;
                 d.gridy = 0;
-                panel4.add(new JLabel("Item Number"),d);
+                panel4.add(new JLabel("Item Number:"),d);
                 d.gridx = 1;
                 d.gridy = 0;
                 JTextField itemNumberR = new JTextField(10);
                 panel4.add(itemNumberR,d);
                 d.gridx = 0;
                 d.gridy = 1;
-                panel4.add(new JLabel("Quantity To Remove"),d);
+                panel4.add(new JLabel("Quantity To Remove:"),d);
                 d.gridx = 1;
                 d.gridy = 1;
                 JTextField qRemove = new JTextField(10);
