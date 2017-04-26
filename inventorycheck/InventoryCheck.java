@@ -425,6 +425,8 @@ public class InventoryCheck
                 frame5.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame5.setSize(600,600);
                 JPanel panel5 = new JPanel(new GridLayout(5,5,10,10));
+                //panel5.setLayout(new GridLayout());
+                //GridBagConstraints t = new GridBagConstraints();
                 //JLabel order = new JLabel("Order");
                 //order.setHorizontalAlignment(JLabel.CENTER);
                 //order.setVerticalAlignment(JLabel.TOP);
@@ -443,12 +445,14 @@ public class InventoryCheck
                 //frame5.add(pane);
                 ArrayList<InventoryItem> temp = new ArrayList();
                 int x = 1;
+                //t.gridx = 0;
                 for(int i=0;i<inventory.size();i++)
                 {
                     if(inventory.get(i).doesExist() && inventory.get(i).checkMin())
                     {
                         JLabel item = new JLabel(x + ") " + inventory.get(i).getName());
                         item.setBorder(compound);
+                        //t.gridy = 0;
                         panel5.add(item);
                         item.setHorizontalAlignment(JLabel.CENTER);
                         item.setVerticalAlignment(JLabel.CENTER);
@@ -456,6 +460,9 @@ public class InventoryCheck
                         x++;
                     }
                 }
+                JScrollPane pane = new JScrollPane(panel5);
+                pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                frame5.add(pane);
                 frame5.setVisible(true);
             }
         });
