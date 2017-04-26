@@ -461,7 +461,7 @@ public class InventoryCheck
                     }
                 }
                 JScrollPane pane = new JScrollPane(panel5);
-                pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
                 frame5.add(pane);
                 frame5.setVisible(true);
             }
