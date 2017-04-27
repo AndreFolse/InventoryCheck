@@ -476,7 +476,8 @@ public class InventoryCheck
                 JFrame frame5 = new JFrame("Order");
                 frame5.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame5.setSize(600,600);
-                JPanel panel5 = new JPanel(new GridLayout(5,5,10,10));
+                JPanel panel5 = new JPanel();//new GridLayout(5,5,10,10));
+                Box box = Box.createVerticalBox();
                 //panel5.setLayout(new GridLayout());
                 //GridBagConstraints t = new GridBagConstraints();
                 //JLabel order = new JLabel("Order");
@@ -495,24 +496,26 @@ public class InventoryCheck
                 //JScrollPane pane = new JScrollPane();
                 //pane.add(panel5);
                 //frame5.add(pane);
-                int x = 1;
+                //ArrayList<InventoryItem> temp = new ArrayList();
+                //int x = 1;
                 //t.gridx = 0;
                 for(int i=0;i<inventory.size();i++)
                 {
                     if(inventory.get(i).doesExist() && inventory.get(i).checkMin())
                     {
-                        JLabel item = new JLabel(x + ") " + inventory.get(i).getName());
+                        JLabel item = new JLabel(String.format("%3d) %-20s  quantity: %-10d  minimum: %-10d", i, inventory.get(i).getName(), inventory.get(i).getAmount(), inventory.get(i).getMinimum()));
                         item.setBorder(compound);
-                        //t.gridy = 0;
-                        panel5.add(item);
+                        //panel5.add(item);
+                        box.add(item);
                         item.setHorizontalAlignment(JLabel.CENTER);
                         item.setVerticalAlignment(JLabel.CENTER);
-                        //label.setFont(new Font("Serif",Font.LAYOUT_LEFT_TO_RIGHT,12));
-                        x++;
+                        item.setFont(new Font("Andale Mono",Font.PLAIN,14));
+                        //x++;
                     }
                 }
-                JScrollPane pane = new JScrollPane(panel5);
+                JScrollPane pane = new JScrollPane(box);
                 pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                pane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
                 frame5.add(pane);
                 frame5.setVisible(true);
             }
