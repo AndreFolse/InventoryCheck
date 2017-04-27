@@ -19,6 +19,7 @@ public class InventoryCheck
     JButton button4 = new JButton("Decrease Quantity");
     JButton button5 = new JButton("Order");
     JButton button6 = new JButton("Search");
+    JButton button7 = new JButton("View Directory");
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -545,7 +546,7 @@ public class InventoryCheck
                 n.gridx = 1;
                 n.gridy = 1;
                 JButton buttonS = new JButton("Search");
-                panel6.add(buttonS);
+                panel6.add(buttonS,n);
                 buttonS.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -591,5 +592,13 @@ public class InventoryCheck
                 });
             }
         });
+        c.gridx = 0;
+        c.gridy = 6;
+        panel.add(button7,c);
+    //button7.addActionListener(newActionListener()
+      // {
+        //@Override
+            //public void actionPerformed(ActionEvent e) {
+    //});
     }
 }
