@@ -612,7 +612,7 @@ public class InventoryCheck
                 {
                     if(inventory.get(i).doesExist())
                     {
-                        JLabel itemLabel = new JLabel(String.format("Item #%3d quantity = %5d", i, inventory.get(i).getAmount()));
+                        JLabel itemLabel = new JLabel(String.format("Item #%-4d    name: %-20s     quantity = %-5d", i, inventory.get(i).getName(), inventory.get(i).getAmount()));
                         itemLabel.setBorder(compound);
                         panel7.add(itemLabel);
                         itemLabel.setHorizontalAlignment(JLabel.CENTER);
