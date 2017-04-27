@@ -32,7 +32,7 @@ public class InventoryCheck
 
     public void createGui() {
         JFrame frame = new JFrame("InventoryCheck");
-        frame.setSize(300, 350);
+        frame.setSize(300, 400);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
@@ -495,7 +495,6 @@ public class InventoryCheck
                 //JScrollPane pane = new JScrollPane();
                 //pane.add(panel5);
                 //frame5.add(pane);
-                ArrayList<InventoryItem> temp = new ArrayList();
                 int x = 1;
                 //t.gridx = 0;
                 for(int i=0;i<inventory.size();i++)
@@ -595,10 +594,39 @@ public class InventoryCheck
         c.gridx = 0;
         c.gridy = 6;
         panel.add(button7,c);
-    //button7.addActionListener(newActionListener()
-      // {
-        //@Override
-            //public void actionPerformed(ActionEvent e) {
-    //});
+        button7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                JFrame frame7 = new JFrame("Directory");
+                frame7.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame7.setSize(600,600);
+                JPanel panel7 = new JPanel(new GridLayout(5,5,10,10));
+                EmptyBorder Panelborder = new EmptyBorder(5,5,5,5);
+                panel7.setBorder(Panelborder);
+                EmptyBorder border = new EmptyBorder(1,3,1,2);
+                LineBorder line = new LineBorder(Color.BLUE,2,true);
+                CompoundBorder compound = new CompoundBorder(line, border);
+                frame7.add(panel7);
+                for(int i=0;i<inventory.size();i++)
+                {
+                    if(inventory.get(i).doesExist())
+                    {
+                        JLabel itemLabel = new JLabel(String.format("Item #%3d quantity = %5d", i, inventory.get(i).getAmount()));
+                        itemLabel.setBorder(compound);
+                        panel7.add(itemLabel);
+                        itemLabel.setHorizontalAlignment(JLabel.CENTER);
+                        itemLabel.setVerticalAlignment(JLabel.CENTER);
+                        //label.setFont(new Font("Serif",Font.LAYOUT_LEFT_TO_RIGHT,12));
+                    }
+                }
+                JScrollPane pane = new JScrollPane(panel7);
+                pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                frame7.add(pane);
+                frame7.setVisible(true);
+
+            }
+        });
+
     }
 }
