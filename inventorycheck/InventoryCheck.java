@@ -457,6 +457,12 @@ public class InventoryCheck
                     public void actionPerformed(ActionEvent e) {
                         JFrame removeIF = new JFrame("InventoryCheck");
                         removeIF.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        removeIF.addWindowListener(new WindowAdapter() {
+                            @Override
+                            public void windowClosing(WindowEvent e) {
+                                button4.setEnabled(true);
+                            }
+                        });
                         removeIF.setSize(500, 100);
                         JPanel removeIP = new JPanel();
                         removeIF.add(removeIP);
@@ -504,6 +510,7 @@ public class InventoryCheck
                             public void actionPerformed(ActionEvent e) {
                                 removeIF.dispose();
                                 frame4.dispose();
+                                button4.setEnabled(true);
                             }
                         });
                     }
