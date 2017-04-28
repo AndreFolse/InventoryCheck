@@ -350,6 +350,12 @@ public class InventoryCheck
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         JFrame addIF = new JFrame("InventoryCheck");
+                        addIF.addWindowListener(new WindowAdapter() {
+                          @Override
+                            public void windowClosing(WindowEvent e) {
+                            button3.setEnabled(true);
+                            }
+                        });
                         addIF.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         addIF.setSize(500, 100);
                         JPanel addIP = new JPanel();
@@ -395,6 +401,7 @@ public class InventoryCheck
                             public void actionPerformed(ActionEvent e) {
                                 addIF.dispose();
                                 frame3.dispose();
+                                button3.setEnable(true);
                             }
                         });
 
@@ -475,7 +482,7 @@ public class InventoryCheck
                                 throw new NullPointerException();
                             inventory.get(Integer.parseInt(itemNumberR.getText())).removeItem(Integer.parseInt(qRemove.getText()));
                             removeIP.add(new JLabel("Item Quantity Successfully Decreased"));
-                            buttonRD.setText("Remove Another");
+                            buttonRD.setText("Continue Decreasing");
 
                         } catch (NumberFormatException e1) {
 
