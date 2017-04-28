@@ -369,7 +369,7 @@ public class InventoryCheck
                                 throw new NullPointerException();
                             inventory.get(Integer.parseInt(itemNumber.getText())).addItem(Integer.parseInt(qAdd.getText()));
                             addIP.add(new JLabel("Item Quantity Successfully Increased"));
-                            buttonA.setText("Add Another");
+                            buttonA.setText("Continue Increases");
 
                         } catch (NumberFormatException e1) {
 
@@ -401,7 +401,7 @@ public class InventoryCheck
                             public void actionPerformed(ActionEvent e) {
                                 addIF.dispose();
                                 frame3.dispose();
-                                button3.setEnable(true);
+                                button3.setEnabled(true);
                             }
                         });
 
