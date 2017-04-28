@@ -595,13 +595,12 @@ public class InventoryCheck
                 buttonS.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        frame.setVisible(false);
                         JFrame frameS = new JFrame("InventoryCheck");
                         frameS.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                         frameS.addWindowListener(new WindowAdapter() {
                             @Override
                             public void windowClosing(WindowEvent e) {
-                                frame6.setVisible(true);
+                                button6.setEnabled(true);
                                 frameS.dispose();
                             }
                         });
@@ -616,6 +615,7 @@ public class InventoryCheck
                             panelS.add(new JLabel("Quantity: " + inventory.get(Integer.parseInt(itemNumberT.getText())).getAmount()));
                             panelS.add(new JLabel("Minimum: " + inventory.get(Integer.parseInt(itemNumberT.getText())).getMinimum()));
                             frameS.add(panelS);
+                            itemNumberT.setText("");
                             JButton buttonSA = new JButton("Search Again");
                             panelS.add(buttonSA);
                             frameS.setVisible(true);
@@ -623,7 +623,6 @@ public class InventoryCheck
                             buttonSA.addActionListener(new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent e) {
-                                    itemNumberT.setText("");
                                     frameS.dispose();
                                     frame6.setVisible(true);
                                 }
