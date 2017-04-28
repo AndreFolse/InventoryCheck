@@ -225,6 +225,7 @@ public class InventoryCheck
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frame2 = new JFrame("Remove Directory");
+                frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame2.setSize(500,100);
                 frame2.addWindowListener(new WindowAdapter() {
                     @Override
@@ -309,6 +310,7 @@ public class InventoryCheck
             public void actionPerformed(ActionEvent e) {
 
                 JFrame frame3 = new JFrame("Increase Quantity");
+                frame3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame3.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowOpened(WindowEvent e) {
@@ -422,6 +424,7 @@ public class InventoryCheck
             public void actionPerformed(ActionEvent e) {
 
                 JFrame frame4 = new JFrame("Decrease Quantity");
+                frame4.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame4.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowOpened(WindowEvent e) {
