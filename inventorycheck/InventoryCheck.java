@@ -326,9 +326,9 @@ public class InventoryCheck
                 JPanel panel3 = new JPanel();
                 panel3.setLayout(new GridBagLayout());
                 GridBagConstraints b = new GridBagConstraints();
-                frame3.setSize(400, 200);
+                frame3.setSize(350, 150);
                 frame3.add(panel3);
-                frame3.getContentPane().add(panel3,BorderLayout.NORTH);
+                frame3.getContentPane().add(panel3,BorderLayout.CENTER);
                 b.gridx = 0;
                 b.gridy = 0;
                 panel3.add(new JLabel("Item Number"),b);
@@ -440,9 +440,9 @@ public class InventoryCheck
                 JPanel panel4 = new JPanel();
                 panel4.setLayout(new GridBagLayout());
                 GridBagConstraints d = new GridBagConstraints();
-                frame4.setSize(400, 200);
+                frame4.setSize(350, 150);
                 frame4.add(panel4);
-                frame4.getContentPane().add(panel4, BorderLayout.NORTH);
+                frame4.getContentPane().add(panel4, BorderLayout.CENTER);
                 d.gridx = 0;
                 d.gridy = 0;
                 panel4.add(new JLabel("Item Number"),d);
@@ -627,10 +627,9 @@ public class InventoryCheck
                         try {
                             if (!inventory.get(Integer.parseInt(itemNumberT.getText())).doesExist())
                                 throw new IndexOutOfBoundsException();
-                            panelS.add(new JLabel("Item " + itemNumberT.getText() + ":"));
-                            panelS.add(new JLabel("Name: " + inventory.get(Integer.parseInt(itemNumberT.getText())).getName()));
-                            panelS.add(new JLabel("Quantity: " + inventory.get(Integer.parseInt(itemNumberT.getText())).getAmount()));
-                            panelS.add(new JLabel("Minimum: " + inventory.get(Integer.parseInt(itemNumberT.getText())).getMinimum()));
+                            int i = Integer.parseInt(itemNumberT.getText());
+                            panelS.add(new JLabel(String.format("Item: %d   Name: %s   Quantity: %d   Minimum: %d",
+                                    i, inventory.get(i).getName(), inventory.get(i).getAmount(), inventory.get(i).getMinimum())));
                             frameS.add(panelS);
                             itemNumberT.setText("");
                             JButton buttonSA = new JButton("Search Again");
